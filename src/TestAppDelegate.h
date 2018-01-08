@@ -1,4 +1,4 @@
-#ifndef __TESTAPPDELEGATE_H__
+п»ї#ifndef __TESTAPPDELEGATE_H__
 #define __TESTAPPDELEGATE_H__
 
 #pragma once
@@ -10,9 +10,9 @@ public:
 	virtual void GameContentSize(int deviceWidth, int deviceHeight, int &width, int &height) override;
 	virtual void ScreenMode(DeviceMode &mode) override;
 
-	virtual void RegisterTypes() override; // Регистрация виджетов
+	virtual void RegisterTypes() override; // Р РµРіРёСЃС‚СЂР°С†РёСЏ РІРёРґР¶РµС‚РѕРІ
 
-	virtual void LoadResources() override; // Загрузка основных ресурсов
+	virtual void LoadResources() override; // Р—Р°РіСЂСѓР·РєР° РѕСЃРЅРѕРІРЅС‹С… СЂРµСЃСѓСЂСЃРѕРІ
 	virtual void OnResourceLoaded() override;
 
 	virtual void OnPostDraw() override;

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Bullet.h"
 
 Bullet::Bullet(FPoint position,int speed,float angle, EffectsContainer &effCont)
@@ -20,7 +20,7 @@ Bullet::Bullet(FPoint position,int speed,float angle, EffectsContainer &effCont)
 
 void Bullet::Draw()
 {
-	// Рисуем пулю, если она ещё не попала в цель
+	// Р РёСЃСѓРµРј РїСѓР»СЋ, РµСЃР»Рё РѕРЅР° РµС‰С‘ РЅРµ РїРѕРїР°Р»Р° РІ С†РµР»СЊ
 	if (!_hit) {
 		Render::device.PushMatrix();
 		
@@ -42,7 +42,7 @@ void Bullet::Draw()
 }
 
 
-// Обновляем позицию пули и эффекта шлейфа
+// РћР±РЅРѕРІР»СЏРµРј РїРѕР·РёС†РёСЋ РїСѓР»Рё Рё СЌС„С„РµРєС‚Р° С€Р»РµР№С„Р°
 void Bullet::Update(float dt)
 {
 	_position.x += _speed * math::cos((_angle + 90) * math::PI / 180) * dt * K_SPEED;
@@ -52,13 +52,13 @@ void Bullet::Update(float dt)
 	_eff->posY = _position.y;
 }
 
-// Получаем позицию пули
+// РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РїСѓР»Рё
 FPoint Bullet::GetPosition()
 {
 	return _position;
 }
 
-// Устанавливаем флаг попадания
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С„Р»Р°Рі РїРѕРїР°РґР°РЅРёСЏ
 void Bullet::SetHit(bool hit)
 {
 	_hit = hit;
@@ -66,19 +66,19 @@ void Bullet::SetHit(bool hit)
 	_eff = NULL;
 }
 
-// Получаем флаг попадания
+// РџРѕР»СѓС‡Р°РµРј С„Р»Р°Рі РїРѕРїР°РґР°РЅРёСЏ
 bool Bullet::GetHit()
 {
 	return _hit;
 }
 
-// Получаем прямоугольник пули
+// РџРѕР»СѓС‡Р°РµРј РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РїСѓР»Рё
 IRect Bullet::GetIRect()
 {
 	return _texBullet->getBitmapRect();
 }
 
-// Получаем эффект шлейфа
+// РџРѕР»СѓС‡Р°РµРј СЌС„С„РµРєС‚ С€Р»РµР№С„Р°
 ParticleEffectPtr Bullet::GetEffect()
 {
 	return _eff;

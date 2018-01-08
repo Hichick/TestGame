@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 
 #include <Render.h>
 
-#define K_SPEED 10 // Коэфф. скорости
+#define K_SPEED 10 // РљРѕСЌС„С„. СЃРєРѕСЂРѕСЃС‚Рё
 
-// Класс Пули
+// РљР»Р°СЃСЃ РџСѓР»Рё
 class Bullet
 {
 public:
@@ -22,14 +22,14 @@ public:
 
 private:
 
-	FPoint _position; // Позиция
-	float _speed; // Скорость пули (пикс/сек)
-	float _angle; // Угол полета
-	bool _hit; // Флаг попадания пули
+	FPoint _position; // РџРѕР·РёС†РёСЏ
+	float _speed; // РЎРєРѕСЂРѕСЃС‚СЊ РїСѓР»Рё (РїРёРєСЃ/СЃРµРє)
+	float _angle; // РЈРіРѕР» РїРѕР»РµС‚Р°
+	bool _hit; // Р¤Р»Р°Рі РїРѕРїР°РґР°РЅРёСЏ РїСѓР»Рё
 
-	Render::Texture* _texBullet; // Текстура пули
+	Render::Texture* _texBullet; // РўРµРєСЃС‚СѓСЂР° РїСѓР»Рё
 
-	ParticleEffectPtr _eff; // Эффект шлейфа
+	ParticleEffectPtr _eff; // Р­С„С„РµРєС‚ С€Р»РµР№С„Р°
 
 };
 

@@ -1,16 +1,16 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Target.h"
 #include <string>
 
 Target::Target()
 {
 	
-	// Генерируем начальну. и конечную позицию
+	// Р“РµРЅРµСЂРёСЂСѓРµРј РЅР°С‡Р°Р»СЊРЅСѓ. Рё РєРѕРЅРµС‡РЅСѓСЋ РїРѕР·РёС†РёСЋ
 	_position_start = FPoint(PADDING, math::random(200, Render::device.Height() - PADDING));
 	_position_end = FPoint(Render::device.Width() - PADDING, math::random(200, Render::device.Height() - PADDING));
 	_position = _position_start;
 
-	// Условие для того чтобы цели вылетали с другой стороны
+	// РЈСЃР»РѕРІРёРµ РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ С†РµР»Рё РІС‹Р»РµС‚Р°Р»Рё СЃ РґСЂСѓРіРѕР№ СЃС‚РѕСЂРѕРЅС‹
 	if (math::random_bool())
 	{
 		_position_start = _position_end;
@@ -19,9 +19,9 @@ Target::Target()
 	}
 	//-----------------------------------------------------
 
-	_angle = math::atan((_position_end.y - _position_start.y), (_position_end.x - _position_start.x)) * 180 / math::PI; // Вычисляем угол полета
+	_angle = math::atan((_position_end.y - _position_start.y), (_position_end.x - _position_start.x)) * 180 / math::PI; // Р’С‹С‡РёСЃР»СЏРµРј СѓРіРѕР» РїРѕР»РµС‚Р°
 
-	// Генерируем одну из 3-х целей
+	// Р“РµРЅРµСЂРёСЂСѓРµРј РѕРґРЅСѓ РёР· 3-С… С†РµР»РµР№
 	switch (math::random(1, 3))
 	{
 		case 1:
@@ -69,7 +69,7 @@ void Target::Draw()
 
 void Target::Update(float dt)
 {
-	// Меняем маршрут, если мишень долетела до правого края
+	// РњРµРЅСЏРµРј РјР°СЂС€СЂСѓС‚, РµСЃР»Рё РјРёС€РµРЅСЊ РґРѕР»РµС‚РµР»Р° РґРѕ РїСЂР°РІРѕРіРѕ РєСЂР°СЏ
 	if ( (_position.x) > (Render::device.Width() - _texTarget->Width() / 2))
 	{
 		_position_start = _position_end;
@@ -78,7 +78,7 @@ void Target::Update(float dt)
 		_angle = math::atan((_position_end.y - _position_start.y), (_position_end.x - _position_start.x)) * 180 / math::PI;
 	}
 
-	// Меняем маршрут, если мишень долетела до левого края
+	// РњРµРЅСЏРµРј РјР°СЂС€СЂСѓС‚, РµСЃР»Рё РјРёС€РµРЅСЊ РґРѕР»РµС‚РµР»Р° РґРѕ Р»РµРІРѕРіРѕ РєСЂР°СЏ
 	if (_position.x < _texTarget->Width() / 2)
 	{
 		_position_start = _position_end;
@@ -87,7 +87,7 @@ void Target::Update(float dt)
 		_angle = math::atan((_position_end.y - _position_start.y), (_position_end.x - _position_start.x)) * 180 / math::PI;
 	}
 
-	// Высчитываем текушую позицию мишени
+	// Р’С‹СЃС‡РёС‚С‹РІР°РµРј С‚РµРєСѓС€СѓСЋ РїРѕР·РёС†РёСЋ РјРёС€РµРЅРё
 	_position.x += _speed * math::cos((_angle) * math::PI / 180) * dt;
 	_position.y += _speed * math::sin((_angle) * math::PI / 180) * dt;
 	
@@ -96,27 +96,27 @@ void Target::Update(float dt)
 	//OutputDebugString(str);
 }
 
-// Получаем позицию текущую позицию
+// РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ С‚РµРєСѓС‰СѓСЋ РїРѕР·РёС†РёСЋ
 FPoint Target::GetPosition()
 {
 	return  _position;
 }
 
-// Получаем эффект уничтожения мишени
+// РџРѕР»СѓС‡Р°РµРј СЌС„С„РµРєС‚ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РјРёС€РµРЅРё
 ParticleEffectPtr Target::GetEffect()
 {
 	return _eff;
 }
 
 
-// Метод для проверки попадания пули по мишени
+// РњРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РїРѕРїР°РґР°РЅРёСЏ РїСѓР»Рё РїРѕ РјРёС€РµРЅРё
 bool Target::CheckHit(FPoint position_bullet,IRect rect_bullet, EffectsContainer &effCont)
 {
 	IRect _texRect = _texTarget->getBitmapRect();
 
-	_texRect.Inflate(-3); // Уменьшаем прямоугольник мишени (потому что мишени круглые и имеют шипы)
+	_texRect.Inflate(-3); // РЈРјРµРЅСЊС€Р°РµРј РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РјРёС€РµРЅРё (РїРѕС‚РѕРјСѓ С‡С‚Рѕ РјРёС€РµРЅРё РєСЂСѓРіР»С‹Рµ Рё РёРјРµСЋС‚ С€РёРїС‹)
 
-	// Условие пересечения двух плоскостей
+	// РЈСЃР»РѕРІРёРµ РїРµСЂРµСЃРµС‡РµРЅРёСЏ РґРІСѓС… РїР»РѕСЃРєРѕСЃС‚РµР№
 	if (
 		!((position_bullet.x + rect_bullet.Width() / 2) < (_position.x - _texRect.Width()/2) || (position_bullet.x - rect_bullet.Width() / 2) > _position.x + _texRect.Width()/2 ) &&
 		!((position_bullet.y ) < (_position.y - _texRect.Height()) || (position_bullet.y - rect_bullet.Height()) > _position.y )

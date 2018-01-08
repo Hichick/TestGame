@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Cannon.h"
 
 Cannon::Cannon()
@@ -12,7 +12,7 @@ Cannon::Cannon()
 
 void Cannon::Draw()
 {
-	// Проверка наличия и отрисовки пуль
+	// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ Рё РѕС‚СЂРёСЃРѕРІРєРё РїСѓР»СЊ
 	if (!_bullets.empty())
 	{
 		for (int i=0;i<_bullets.size();i++)
@@ -30,7 +30,7 @@ void Cannon::Draw()
 	FRect rect(texRect), uv(0, 1, 0, 1);
 	_texCannon->TranslateUV(rect, uv);
 
-	// Смещаем на половину ширины текстуры, чтобы текстура была по середине
+	// РЎРјРµС‰Р°РµРј РЅР° РїРѕР»РѕРІРёРЅСѓ С€РёСЂРёРЅС‹ С‚РµРєСЃС‚СѓСЂС‹, С‡С‚РѕР±С‹ С‚РµРєСЃС‚СѓСЂР° Р±С‹Р»Р° РїРѕ СЃРµСЂРµРґРёРЅРµ
 	Render::device.MatrixTranslate(math::Vector3(-texRect.width / 2, 0, 0.f));
 
 	_texCannon->Bind();
@@ -49,7 +49,7 @@ void Cannon::Update(float dt)
 		{
 			_bullets[i]->Update(dt);
 
-			// Удаление пули, если вылетает за пределы экрана
+			// РЈРґР°Р»РµРЅРёРµ РїСѓР»Рё, РµСЃР»Рё РІС‹Р»РµС‚Р°РµС‚ Р·Р° РїСЂРµРґРµР»С‹ СЌРєСЂР°РЅР°
 			if (_bullets[i]->GetPosition().x > Render::device.Width() ||
 				_bullets[i]->GetPosition().x < 0 ||
 				_bullets[i]->GetPosition().y > Render::device.Height() ||
@@ -62,7 +62,7 @@ void Cannon::Update(float dt)
 	}
 
 	
-	_overheat -= OVERHEAT * dt; // Cчитаем перегрев
+	_overheat -= OVERHEAT * dt; // CС‡РёС‚Р°РµРј РїРµСЂРµРіСЂРµРІ
 
 	if (_overheat < 0)
 	{
@@ -71,18 +71,18 @@ void Cannon::Update(float dt)
 
 	IPoint mouse_pos = Core::mainInput.GetMousePos();
 
-	// Высчитываем угол поворота, относительно положения мыши
+	// Р’С‹СЃС‡РёС‚С‹РІР°РµРј СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р°, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РїРѕР»РѕР¶РµРЅРёСЏ РјС‹С€Рё
 	_angle = math::atan((mouse_pos.y - _position.y), (mouse_pos.x - _position.x)) * 180 / math::PI - 90;
 }
 
-// Добавляем пулю в коллецию и увеличиваем перегрев
+// Р”РѕР±Р°РІР»СЏРµРј РїСѓР»СЋ РІ РєРѕР»Р»РµС†РёСЋ Рё СѓРІРµР»РёС‡РёРІР°РµРј РїРµСЂРµРіСЂРµРІ
 void Cannon::AddBullet(int speed, EffectsContainer &effCont)
 {
 	_bullets.push_back(new Bullet(GetPositionForBullet(),speed,_angle, effCont));
 	_overheat += OVERHEAT_FOR_BULLET;
 }
 
-// Удаление пули
+// РЈРґР°Р»РµРЅРёРµ РїСѓР»Рё
 void Cannon::DelBullet(int i)
 {
 	if (_bullets[i]->GetEffect())
@@ -94,38 +94,38 @@ void Cannon::DelBullet(int i)
 	_bullets.erase(_bullets.begin() + i);
 }
 
-// Устанавливаем позицию пушки
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕР·РёС†РёСЋ РїСѓС€РєРё
 void Cannon::SetPosition(FPoint pos)
 {
 	_position.x = pos.x;
 	_position.y = pos.y;
 }
 
-// Получаем позицию пушки
+// РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РїСѓС€РєРё
 FPoint Cannon::GetPosition()
 {
 	return _position;
 }
 
-// Устанавливаем угол поворота
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р°
 void Cannon::SetAngle(float angleB)
 {
 	_angle = angleB;
 }
 
-// Получаему угол поворота
+// РџРѕР»СѓС‡Р°РµРјСѓ СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р°
 float Cannon::GetAngle()
 {
 	return _angle;
 }
 
-// Получаем значение пергрева
+// РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ РїРµСЂРіСЂРµРІР°
 int Cannon::GetOverheat()
 {
 	return _overheat;
 }
 
-// Получаем позицию для выстрела (начальную координату для пули)
+// РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РґР»СЏ РІС‹СЃС‚СЂРµР»Р° (РЅР°С‡Р°Р»СЊРЅСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РґР»СЏ РїСѓР»Рё)
 FPoint Cannon::GetPositionForBullet()
 {
 	FPoint p2;
@@ -151,7 +151,7 @@ FPoint Cannon::GetPositionForBullet()
 	return p2;
 }
 
-// Получаем коллекцию пуль
+// РџРѕР»СѓС‡Р°РµРј РєРѕР»Р»РµРєС†РёСЋ РїСѓР»СЊ
 std::vector<Bullet*> Cannon::GetBullets()
 {
 	return _bullets;

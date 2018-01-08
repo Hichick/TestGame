@@ -1,11 +1,11 @@
-#pragma once
+п»ї#pragma once
 #include <Render.h>
 #include "Bullet.h"
 
-#define OVERHEAT 1 // Коэф. перегрева
-#define OVERHEAT_FOR_BULLET 50 // Кол-во перегрева за выстрел [1,100]
+#define OVERHEAT 1 // РљРѕСЌС„. РїРµСЂРµРіСЂРµРІР°
+#define OVERHEAT_FOR_BULLET 50 // РљРѕР»-РІРѕ РїРµСЂРµРіСЂРµРІР° Р·Р° РІС‹СЃС‚СЂРµР» [1,100]
 
-// Класс Пушки
+// РљР»Р°СЃСЃ РџСѓС€РєРё
 
 class Cannon
 {
@@ -25,19 +25,19 @@ public:
 	float GetAngle();
 	int GetOverheat();
 
-	FPoint GetPositionForBullet(); // Получаем позицию для выстрела (начальную координату для пули)
+	FPoint GetPositionForBullet(); // РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РґР»СЏ РІС‹СЃС‚СЂРµР»Р° (РЅР°С‡Р°Р»СЊРЅСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РґР»СЏ РїСѓР»Рё)
 
 	std::vector<Bullet*> GetBullets();
 
 private:
 
-	Render::Texture* _texCannon; // Текстура пушки
+	Render::Texture* _texCannon; // РўРµРєСЃС‚СѓСЂР° РїСѓС€РєРё
 
-	FPoint _position; // Точка отвечающая за положение пушки
-	float _angle; // Угол поворота
-	int _overheat; // Процент перегрева пушки
+	FPoint _position; // РўРѕС‡РєР° РѕС‚РІРµС‡Р°СЋС‰Р°СЏ Р·Р° РїРѕР»РѕР¶РµРЅРёРµ РїСѓС€РєРё
+	float _angle; // РЈРіРѕР» РїРѕРІРѕСЂРѕС‚Р°
+	int _overheat; // РџСЂРѕС†РµРЅС‚ РїРµСЂРµРіСЂРµРІР° РїСѓС€РєРё
 
-	std::vector<Bullet*> _bullets; // Колекция пуль
+	std::vector<Bullet*> _bullets; // РљРѕР»РµРєС†РёСЏ РїСѓР»СЊ
 
 };
 

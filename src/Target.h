@@ -1,8 +1,8 @@
-#pragma once
+п»ї#pragma once
 #include <Render.h>
 #include <vector>
 
-#define PADDING 10 // Отступы от края в пикселях
+#define PADDING 10 // РћС‚СЃС‚СѓРїС‹ РѕС‚ РєСЂР°СЏ РІ РїРёРєСЃРµР»СЏС…
 
 class Target
 {
@@ -20,17 +20,17 @@ public:
 
 private:
 
-	FPoint _position_start; // Позиция мишени для начала движения
-	FPoint _position_end; // Позиция мишени для конца движения
-	FPoint _position; // Текущая позиция
-	float _speed; // Скорость мишени
-	float _angle; // Угол полета
-	float _scale; // Масштаб мишени
+	FPoint _position_start; // РџРѕР·РёС†РёСЏ РјРёС€РµРЅРё РґР»СЏ РЅР°С‡Р°Р»Р° РґРІРёР¶РµРЅРёСЏ
+	FPoint _position_end; // РџРѕР·РёС†РёСЏ РјРёС€РµРЅРё РґР»СЏ РєРѕРЅС†Р° РґРІРёР¶РµРЅРёСЏ
+	FPoint _position; // РўРµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ
+	float _speed; // РЎРєРѕСЂРѕСЃС‚СЊ РјРёС€РµРЅРё
+	float _angle; // РЈРіРѕР» РїРѕР»РµС‚Р°
+	float _scale; // РњР°СЃС€С‚Р°Р± РјРёС€РµРЅРё
 
-	Render::Texture* _texTarget; // Текстура мишени
-	ParticleEffectPtr _eff; // Эффект уничтожения мишени
+	Render::Texture* _texTarget; // РўРµРєСЃС‚СѓСЂР° РјРёС€РµРЅРё
+	ParticleEffectPtr _eff; // Р­С„С„РµРєС‚ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РјРёС€РµРЅРё
 
-	bool _destroy; // Флаг уничтожения мишени
+	bool _destroy; // Р¤Р»Р°Рі СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РјРёС€РµРЅРё
 	
 };
 

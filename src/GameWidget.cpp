@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "GameWidget.h"
 #include "Cannon.h"
 #include "Bullet.h"
@@ -16,7 +16,7 @@ GameWidget::GameWidget(const std::string& name, rapidxml::xml_node<>* elem)
 	Init();
 }
 
-// Функция для считывания значений переменных из файла
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ Р·РЅР°С‡РµРЅРёР№ РїРµСЂРµРјРµРЅРЅС‹С… РёР· С„Р°Р№Р»Р°
 int ReadValueFromFile(char name_file[], char name_var[])
 {
 	FILE *file;
@@ -48,19 +48,19 @@ void GameWidget::Init()
 	_texStart = Core::resourceManager.Get<Render::Texture>("start_normal");
 	_texRepeat = Core::resourceManager.Get<Render::Texture>("repeat_normal");
 
-	_status = START; // Устанавливаем начальный экран
+	_status = START; // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅР°С‡Р°Р»СЊРЅС‹Р№ СЌРєСЂР°РЅ
 
 	_score = 0;
 
 	_cannon = new Cannon();
 
-	// Считываем параметры из файла
+	// РЎС‡РёС‚С‹РІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РёР· С„Р°Р№Р»Р°
 	CountTarget = ReadValueFromFile("input.txt", "CountTarget");
 	Speed = ReadValueFromFile("input.txt", "Speed");
 	Time = ReadValueFromFile("input.txt", "Time");
 	//-----------------------------------
 
-	// Генерируем цели
+	// Р“РµРЅРµСЂРёСЂСѓРµРј С†РµР»Рё
 	for (int i=0;i<CountTarget;i++)
 	{
 		_targets.push_back(new Target());
@@ -70,33 +70,33 @@ void GameWidget::Init()
 
 void GameWidget::Draw()
 {
-	_texBackground->Draw(); // Рисуем текстуру фона
+	_texBackground->Draw(); // Р РёСЃСѓРµРј С‚РµРєСЃС‚СѓСЂСѓ С„РѕРЅР°
 	
 	switch (_status)
 	{
 		case START:
 
-			Blackout(0,0,0,128); // Рисуем затемнение экрана
+			Blackout(0,0,0,128); // Р РёСЃСѓРµРј Р·Р°С‚РµРјРЅРµРЅРёРµ СЌРєСЂР°РЅР°
 			Render::BindFont("lobster_big");
 			Render::PrintString(Render::device.Width() / 2, Render::device.Height() / 2, "START  GAME", 1.f, CenterAlign);
-			DrawTexture(_texStart,FPoint(Render::device.Width() / 2, Render::device.Height() / 2 - 300)); // Рисуем кнопку старт
+			DrawTexture(_texStart,FPoint(Render::device.Width() / 2, Render::device.Height() / 2 - 300)); // Р РёСЃСѓРµРј РєРЅРѕРїРєСѓ СЃС‚Р°СЂС‚
 			break;
 
 		case GAME:
 
-			// Рисуем мишени
+			// Р РёСЃСѓРµРј РјРёС€РµРЅРё
 			for (int i = 0; i<_targets.size(); i++)
 			{
 				_targets[i]->Draw();
 			}
 
 			
-			_cannon->Draw(); // Рисуем пушку
+			_cannon->Draw(); // Р РёСЃСѓРµРј РїСѓС€РєСѓ
 
-			_effCont.Draw(); // Рисуем эффекты
+			_effCont.Draw(); // Р РёСЃСѓРµРј СЌС„С„РµРєС‚С‹
 
 
-			// Рисуем полосу перегрева
+			// Р РёСЃСѓРµРј РїРѕР»РѕСЃСѓ РїРµСЂРµРіСЂРµРІР°
 			if (_cannon->GetOverheat()>50)
 			{
 				if (_cannon->GetOverheat()>75)
@@ -124,7 +124,7 @@ void GameWidget::Draw()
 			Blackout(0, 0, 0, 128);
 			Render::BindFont("lobster_big");
 			
-			// Выводим результаты игры
+			// Р’С‹РІРѕРґРёРј СЂРµР·СѓР»СЊС‚Р°С‚С‹ РёРіСЂС‹
 			if (_score == CountTarget)
 			{
 				Render::PrintString(Render::device.Width() / 2, Render::device.Height() / 2, "YOU WIN!!! \nScore: " + utils::lexical_cast(_score) + " of " + utils::lexical_cast(CountTarget), 1.f, CenterAlign);
@@ -143,7 +143,7 @@ void GameWidget::Draw()
 				
 			}
 			
-			DrawTexture(_texRepeat, FPoint(Render::device.Width() / 2, Render::device.Height() / 2 - 300)); // Рисуем кнопку рестарт
+			DrawTexture(_texRepeat, FPoint(Render::device.Width() / 2, Render::device.Height() / 2 - 300)); // Р РёСЃСѓРµРј РєРЅРѕРїРєСѓ СЂРµСЃС‚Р°СЂС‚
 			
 			break;
 		
@@ -172,10 +172,10 @@ void GameWidget::Update(float dt)
 			}
 
 
-			// Проверяем попадание пули по целям
+			// РџСЂРѕРІРµСЂСЏРµРј РїРѕРїР°РґР°РЅРёРµ РїСѓР»Рё РїРѕ С†РµР»СЏРј
 			for (int i = 0; i<_targets.size(); i++)
 			{
-				bool temp = false; // Временный Флаг попадания
+				bool temp = false; // Р’СЂРµРјРµРЅРЅС‹Р№ Р¤Р»Р°Рі РїРѕРїР°РґР°РЅРёСЏ
 
 				for (int j = 0; j < _cannon->GetBullets().size(); j++)
 				{
@@ -200,7 +200,7 @@ void GameWidget::Update(float dt)
 			}
 
 
-			// Проверка условий окончания игры
+			// РџСЂРѕРІРµСЂРєР° СѓСЃР»РѕРІРёР№ РѕРєРѕРЅС‡Р°РЅРёСЏ РёРіСЂС‹
 			if (Time - (int)_timer <= 0 || _score == CountTarget || _cannon->GetOverheat()>100)
 			{
 				_status = END;
@@ -218,7 +218,7 @@ void GameWidget::Update(float dt)
 	
 }
 
-// Обрабатываем событие нажатия мыши
+// РћР±СЂР°Р±Р°С‚С‹РІР°РµРј СЃРѕР±С‹С‚РёРµ РЅР°Р¶Р°С‚РёСЏ РјС‹С€Рё
 bool GameWidget::MouseDown(const IPoint &mouse_pos)
 {
 	if (Core::mainInput.GetMouseRightButton())
@@ -232,7 +232,7 @@ bool GameWidget::MouseDown(const IPoint &mouse_pos)
 		{
 		case START:
 
-			// Нажатие ЛКМ на кнопку старт
+			// РќР°Р¶Р°С‚РёРµ Р›РљРњ РЅР° РєРЅРѕРїРєСѓ СЃС‚Р°СЂС‚
 			if (_start)
 			{
 				_status = GAME;
@@ -241,12 +241,12 @@ bool GameWidget::MouseDown(const IPoint &mouse_pos)
 			break;
 		case GAME:
 
-			_cannon->AddBullet(Speed,_effCont); // Добавляем пулю при нажатия ЛКМ во время игры
+			_cannon->AddBullet(Speed,_effCont); // Р”РѕР±Р°РІР»СЏРµРј РїСѓР»СЋ РїСЂРё РЅР°Р¶Р°С‚РёСЏ Р›РљРњ РІРѕ РІСЂРµРјСЏ РёРіСЂС‹
 
 			break;
 		case END:
 
-			// Нажатие ЛКМ на кнопку рестарт
+			// РќР°Р¶Р°С‚РёРµ Р›РљРњ РЅР° РєРЅРѕРїРєСѓ СЂРµСЃС‚Р°СЂС‚
 			if (_repeat)
 			{
 				delete _cannon;
@@ -273,7 +273,7 @@ bool GameWidget::MouseDown(const IPoint &mouse_pos)
 	return false;
 }
 
-// Обрабатываем событие движения мыши
+// РћР±СЂР°Р±Р°С‚С‹РІР°РµРј СЃРѕР±С‹С‚РёРµ РґРІРёР¶РµРЅРёСЏ РјС‹С€Рё
 void GameWidget::MouseMove(const IPoint &mouse_pos)
 {
 
@@ -281,13 +281,13 @@ void GameWidget::MouseMove(const IPoint &mouse_pos)
 	{
 		case START:
 			{
-				IRect rect; // Прямоугольник кнопки старт
+				IRect rect; // РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РєРЅРѕРїРєРё СЃС‚Р°СЂС‚
 				rect.x = Render::device.Width() / 2 - _texStart->Width() / 2;
 				rect.y = Render::device.Height() / 2 - 300;
 				rect.width = _texStart->Width();
 				rect.height = _texStart->Height();
 
-				// Проверка нахождения курсора мыши на кнопке старт
+				// РџСЂРѕРІРµСЂРєР° РЅР°С…РѕР¶РґРµРЅРёСЏ РєСѓСЂСЃРѕСЂР° РјС‹С€Рё РЅР° РєРЅРѕРїРєРµ СЃС‚Р°СЂС‚
 				if (PointHitRect(mouse_pos, rect))
 				{
 					_texStart = Core::resourceManager.Get<Render::Texture>("start_hover");
@@ -305,13 +305,13 @@ void GameWidget::MouseMove(const IPoint &mouse_pos)
 			break;
 		case END:
 				{
-					IRect rect; // Прямоугольник кнопки рестарт
+					IRect rect; // РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РєРЅРѕРїРєРё СЂРµСЃС‚Р°СЂС‚
 					rect.x = Render::device.Width() / 2 - _texRepeat->Width() / 2;
 					rect.y = Render::device.Height() / 2 - 300;
 					rect.width = _texRepeat->Width();
 					rect.height = _texRepeat->Height();
 
-					// Проверка нахождения курсора мыши на кнопке рестарт
+					// РџСЂРѕРІРµСЂРєР° РЅР°С…РѕР¶РґРµРЅРёСЏ РєСѓСЂСЃРѕСЂР° РјС‹С€Рё РЅР° РєРЅРѕРїРєРµ СЂРµСЃС‚Р°СЂС‚
 					if (PointHitRect(mouse_pos, rect))
 					{
 						_texRepeat = Core::resourceManager.Get<Render::Texture>("repeat_hover");
@@ -336,7 +336,7 @@ void GameWidget::MouseUp(const IPoint &mouse_pos)
 	
 }
 
-// Рисуем затемнение экрана
+// Р РёСЃСѓРµРј Р·Р°С‚РµРјРЅРµРЅРёРµ СЌРєСЂР°РЅР°
 void GameWidget::Blackout(int red,int green, int blue,int alpha)
 {
 	Render::device.SetTexturing(false);
@@ -346,7 +346,7 @@ void GameWidget::Blackout(int red,int green, int blue,int alpha)
 	Render::device.SetTexturing(true);
 }
 
-// Рисуем текстуры кнопок
+// Р РёСЃСѓРµРј С‚РµРєСЃС‚СѓСЂС‹ РєРЅРѕРїРѕРє
 void GameWidget::DrawTexture(Render::Texture* tex, FPoint position)
 {
 	Render::device.PushMatrix();
@@ -367,7 +367,7 @@ void GameWidget::DrawTexture(Render::Texture* tex, FPoint position)
 
 }
 
-// Рисуем полоску перегрузки
+// Р РёСЃСѓРµРј РїРѕР»РѕСЃРєСѓ РїРµСЂРµРіСЂСѓР·РєРё
 void GameWidget::DrawOverheat(Color rgba,int overheat,int height)
 {
 	Render::device.SetTexturing(false);
@@ -377,7 +377,7 @@ void GameWidget::DrawOverheat(Color rgba,int overheat,int height)
 	Render::device.SetTexturing(true);
 }
 
-// Проверка попадания точки в прямоугольник
+// РџСЂРѕРІРµСЂРєР° РїРѕРїР°РґР°РЅРёСЏ С‚РѕС‡РєРё РІ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
 bool GameWidget::PointHitRect(IPoint point,IRect rect)
 {
 	if (
