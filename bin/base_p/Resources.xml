@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Resources>
+	<FreeTypeFonts group="TestGroup" upload="false">
+		<font name="arial" family="arial" size="12" color="255;255;255;255" letterSpacing="0">
+			<Effect alpha="0.1" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0"/>
+		</font>
+   <font name="lobster" family="lobster" size="24" color="255;166;64;255" letterSpacing="1"></font>
+   <font name="lobster_big" family="lobster" size="48" color="255;166;64;255" letterSpacing="1"></font>
+	</FreeTypeFonts>
+	<Textures>
+    <texture id="background" path="textures/bg" />
+    <texture id="cannon" path="textures/canon.png" />
+    <texture id="bullet" path="textures/bullet.png" />
+    <texture id="target" path="textures/target.png" />
+    <texture id="target_blue" path="textures/target_blue.png" />
+    <texture id="target_brown" path="textures/target_brown.png" />
+    <texture id="target_red" path="textures/target_red.png" />
+    <texture id="start_normal" path="textures/b_play" />
+    <texture id="start_hover" path="textures/b_play_hover" />
+    <texture id="repeat_normal" path="textures/b_repeat" />
+    <texture id="repeat_hover" path="textures/b_repeat_hover" />
+	</Textures>
+</Resources>
