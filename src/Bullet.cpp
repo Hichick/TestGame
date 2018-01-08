@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Bullet.h"
-#include <time.h>
 
 Bullet::Bullet(FPoint position,int speed,float angle, EffectsContainer &effCont)
 {
